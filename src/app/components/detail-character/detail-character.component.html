@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+    <h3 class="text-center title mb-3">Detalle Personaje</h3>
+
+    <div class="col-md-8 col-sm-10">
+        <div class="card shadow-sm rounded border-info">
+            <div class="card-body p-3" *ngIf="(resultCharacter$ | async) as resultCharacter; else errorTemplate">
+                <div class="row align-items-center"> 
+                    <div class="col-4 text-center">
+                        <img class="avatar img-fluid rounded-circle border border-info" [src]="resultCharacter.image" alt="">
+                    </div>
+                    <div class="col-8 text-info">
+                        <p class="mb-1"><strong>Nombre:</strong> {{ resultCharacter.name }}</p>
+                        <p class="mb-1"><strong>Estado:</strong> {{ resultCharacter.status }}</p>
+                        <p class="mb-1"><strong>Especie:</strong> {{ resultCharacter.species }}</p>
+                        <p class="mb-1" *ngIf="resultCharacter.type"><strong>Tipo:</strong> {{ resultCharacter.type }}</p>
+                        <p class="mb-1"><strong>Origen:</strong> {{ resultCharacter.origin.name }}</p>
+                        <p class="mb-1"><strong>Locación:</strong> {{ resultCharacter.location.name }}</p>
+                    </div>
+                </div>
+            </div>
+            <ng-template #errorTemplate>
+                <p class="text-center text-danger p-2">{{ errorMessage }}</p>
+            </ng-template>
+        </div>
+    </div>
+</div>
+<br>
+<p class="text-center return">
+    <a routerLink="/character" class="text-info font-weight-bold">&larr; Regresar</a>
+</p>

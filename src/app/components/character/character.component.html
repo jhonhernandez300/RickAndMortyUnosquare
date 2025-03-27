@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <h2 class="text-center text-primary mb-4">Lista de Personajes</h2>
+
+  <!-- Campo de búsqueda con icono -->
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text bg-primary text-white"><i class="fas fa-search"></i></span>
+    </div>
+    <input 
+      type="text" 
+      class="form-control form-control-lg" 
+      placeholder="Filtrar por nombre o especie..." 
+      [(ngModel)]="filterText"
+    />
+  </div>
+
+  <!-- Contenedor de Cards -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let character of paginatedCharacters">
+      <div class="card shadow-sm">
+        <img [src]="character.image" class="card-img-top" alt="{{ character.name }}">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ character.name }}</h5>
+          <p class="card-text"><strong>Especie:</strong> {{ character.species }}</p>
+          <a [routerLink]="['/character', character.id]" class="btn btn-primary">
+            Ver Detalles
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paginador -->
+  <nav>
+    <ul class="pagination justify-content-center mt-3">
+      <li class="page-item" [class.disabled]="page === 1">
+        <button class="page-link btn btn-outline-primary rounded-pill px-3 shadow-sm" (click)="previousPage()">
+          <i class="fas fa-arrow-left"></i> Anterior
+        </button>
+      </li>
+
+      <li class="page-item mx-1" *ngFor="let p of [].constructor(totalPages); let i = index"
+          [class.active]="page === (i + 1)">
+        <button class="page-link btn btn-primary rounded-pill px-3 shadow-sm" (click)="goToPage(i + 1)">
+          {{ i + 1 }}
+        </button>
+      </li>
+
+      <li class="page-item" [class.disabled]="page === totalPages">
+        <button class="page-link btn btn-outline-primary rounded-pill px-3 shadow-sm" (click)="nextPage()">
+          Siguiente <i class="fas fa-arrow-right"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
