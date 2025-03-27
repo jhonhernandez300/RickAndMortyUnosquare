@@ -1,6 +1,9 @@
 # RickAndMorty
 
+It has a section where you can see all the characters and anothe one where you can see details of a character.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+It uses node js 20 and bootstrap 4
 
 ## Development server
 
